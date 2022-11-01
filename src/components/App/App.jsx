@@ -12,13 +12,12 @@ export default function App() {
   const dispatch = useDispatch();
 
   const formSubmitHandler = newContact => {
-	dispatch(setStatusContact(newContact))
+    dispatch(setStatusContact(newContact));
     Notiflix.Notify.success('You have just created a new contact');
   };
 
-
   const deleteContacts = contactId => {
-	dispatch(deleteContact(contactId))
+    dispatch(deleteContact(contactId));
     Notiflix.Notify.success('You have just deleted a contact');
   };
 
@@ -30,7 +29,7 @@ export default function App() {
       <h2 className={css.subtitle}>Contacts</h2>
       {contacts.length > 0 ? (
         <>
-          <Filter/>
+          <Filter />
           <ContactList onDeleteContact={deleteContacts} />
         </>
       ) : (

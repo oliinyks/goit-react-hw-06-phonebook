@@ -6,8 +6,8 @@ import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import css from './form.module.css';
 
-export default function Form({ onSubmit}) {
-	const contacts = useSelector(getStatusContact);
+export default function Form({ onSubmit }) {
+  const contacts = useSelector(getStatusContact);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -33,15 +33,17 @@ export default function Form({ onSubmit}) {
 
   const handleSubmit = event => {
     event.preventDefault();
-	 const contactsName = contacts.map(contact => contact.name);
+    const contactsName = contacts.map(contact => contact.name);
     const filterName = contactsName.some(
       contactName => contactName.toLowerCase() === name.toLowerCase()
     );
-	 if (filterName) {
-		return  Notiflix.Notify.failure('You already have a contact with that name');
+    if (filterName) {
+      return Notiflix.Notify.failure(
+        'You already have a contact with that name'
+      );
     }
 
-	 const newContact = {
+    const newContact = {
       id: nanoid(),
       name,
       number,
