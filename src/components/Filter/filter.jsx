@@ -1,7 +1,7 @@
 import React from 'react';
 import { getStatusFilter } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { setStatusFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/slice';
 import { nanoid } from 'nanoid';
 import css from './filter.module.css';
 
@@ -12,7 +12,7 @@ export default function Filter() {
 
   const changeFilter = e => {
     const event = e.currentTarget.value;
-    dispatch(setStatusFilter(event));
+    dispatch(setFilter(event));
   };
 
   return (

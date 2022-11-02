@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getStatusContact } from 'redux/selectors';
-import { setStatusContact, deleteContact } from 'redux/contactsSlice';
+import { setContact, deleteContact } from 'redux/slice';
 import Notiflix from 'notiflix';
 import Form from 'components/Form';
 import ContactList from 'components/ContactList';
@@ -12,7 +12,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   const formSubmitHandler = newContact => {
-    dispatch(setStatusContact(newContact));
+    dispatch(setContact(newContact));
     Notiflix.Notify.success('You have just created a new contact');
   };
 
