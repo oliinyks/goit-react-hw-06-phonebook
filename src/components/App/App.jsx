@@ -1,7 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getStatusContact } from 'redux/selectors';
-import { setContact, deleteContact } from 'redux/slice';
-import Notiflix from 'notiflix';
 import Form from 'components/Form';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
@@ -9,28 +7,16 @@ import css from './App.module.css';
 
 export default function App() {
   const contacts = useSelector(getStatusContact);
-  const dispatch = useDispatch();
-
-  const formSubmitHandler = newContact => {
-    dispatch(setContact(newContact));
-    Notiflix.Notify.success('You have just created a new contact');
-  };
-
-  const deleteContacts = contactId => {
-    dispatch(deleteContact(contactId));
-    Notiflix.Notify.success('You have just deleted a contact');
-  };
 
   return (
     <section className={css.phonebook}>
       <h1 className={css.title}>Your amazing phonebook</h1>
-      <Form onSubmit={formSubmitHandler} />
-
+      <Form />
       <h2 className={css.subtitle}>Contacts</h2>
       {contacts.length > 0 ? (
         <>
           <Filter />
-          <ContactList onDeleteContact={deleteContacts} />
+          <ContactList />
         </>
       ) : (
         <p className={css.text}>You have no contacts</p>

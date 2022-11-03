@@ -1,7 +1,7 @@
 import React from 'react';
 import { getStatusFilter } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from 'redux/slice';
+import { setFilter } from 'redux/FilterSlice';
 import { nanoid } from 'nanoid';
 import css from './filter.module.css';
 

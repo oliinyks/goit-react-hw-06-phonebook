@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setContact} from 'redux/ContactSlice';
 import { getStatusContact } from 'redux/selectors';
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import css from './form.module.css';
 
-export default function Form({ onSubmit }) {
+export default function Form() {
   const contacts = useSelector(getStatusContact);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
@@ -49,9 +50,14 @@ export default function Form({ onSubmit }) {
       number,
     };
 
-    onSubmit(newContact);
+    formSubmitHandler(newContact);
     reset();
   };
+
+  const formSubmitHandler = newContact => {
+	dispatch(setContact(newContact));
+	Notiflix.Notify.success('You have just created a new contact');
+ };
 
   const reset = () => {
     setName('');
@@ -97,6 +103,3 @@ export default function Form({ onSubmit }) {
   );
 }
 
-Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
